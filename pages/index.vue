@@ -3,17 +3,14 @@
     <div>
       <Logo />
       <h1 class="title">nuxt-userbase-starter</h1>
+      <h2>Logged in as {{ username }}</h2>
       <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
+        <button class="button--green" @click="handleLogout">Logout</button>
+        <nuxt-link class="button--green" to="/update-user"
+          >Update user info</nuxt-link
         >
-          Documentation
-        </a>
         <a
-          href="https://github.com/nuxt/nuxt.js"
+          href="https://github.com/mujahidfa/nuxt-userbase-starter"
           target="_blank"
           rel="noopener noreferrer"
           class="button--grey"
@@ -26,7 +23,32 @@
 </template>
 
 <script>
-export default {}
+import userbase from 'userbase-js'
+
+export default {
+  async asyncData({ $config }) {
+    const session = await userbase.init({
+      appId: $config.userbaseAppId,
+    })
+    const username = session.user.username
+
+    return {
+      username,
+    }
+  },
+  methods: {
+    handleLogout() {
+      userbase
+        .signOut()
+        .then(() => {
+          this.$router.push({
+            path: '/login',
+          })
+        })
+        .catch((e) => alert(e))
+    },
+  },
+}
 </script>
 
 <style>

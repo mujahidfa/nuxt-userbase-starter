@@ -39,4 +39,15 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
+
+  // Activate the auth middleware
+  // If you want to customize this, see here: https://nuxtjs.org/docs/2.x/directory-structure/middleware#router-middleware
+  router: {
+    middleware: 'auth',
+  },
+
+  // Create a .env file in the root directory that contains USERBASE_APP_ID=your_userbase_app_id
+  publicRuntimeConfig: {
+    userbaseAppId: process.env.USERBASE_APP_ID,
+  },
 }
