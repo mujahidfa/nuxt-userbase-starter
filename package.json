@@ -11,8 +11,8 @@
     "lint": "yarn lint:js"
   },
   "dependencies": {
-    "core-js": "^3.9.1",
-    "nuxt": "^2.15.4",
+    "core-js": "^3.10.1",
+    "nuxt": "^2.15.3",
     "userbase-js": "^2.8.0"
   },
   "devDependencies": {
